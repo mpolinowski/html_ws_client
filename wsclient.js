@@ -102,7 +102,7 @@ function appendToBuffer(videoChunk) {
 // Event handler for clicking on button "Connect"
 function onConnectClick() {
      // Makes sure that user typed username and message before sending
-     if ((ws_protocol.value === '') || (ws_hostname.value === '') || (ws_port.value === '') || (ws_endpoint.value === '') ||(cam_username === '') || (cam_password === '')) {
+     if ((ws_protocol.value === '') || (ws_hostname.value === '') || (ws_port.value === '') || (ws_endpoint.value === '') ||(cam_username.value === '') || (cam_password.value === '')) {
         errorToast("Please fill out all the configuration fields above!");
         return false;
     } else {
