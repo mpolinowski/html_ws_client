@@ -47,7 +47,7 @@
                                 <th scope="row">WS Hostname</th>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="hostname" value="192.168.2.19"/>
+                                        <input type="text" class="form-control" id="hostname" value="192.168.2.120"/>
                                     </div>
                                 </td>
                             </tr>
@@ -62,22 +62,21 @@
                             <tr>
                                 <th scope="row">WS Endpoint</th>
                                 <td>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="endpoint" value="/ws" />
-                                    </div>
+                                    <select id="endpoint" class="form-select">
+                                        <option value="/ws" selected="selected">/ws</option>
+                                    </select>
                                 </td>
                             </tr>
+
                             <tr>
-                                <th scope="row">Connection</th>
+                                <th scope="row">Codec MIME Types</th>
                                 <td>
-                                    <div class="d-flex gap-2">
-                                        <button type="button" class="btn btn-primary p-2 flex-grow-1" id="btnConnect" onclick="onConnectClick()">
-                                        Connect
-                                        </button>
-                                        <button type="button" class="btn btn-danger p-2 flex-grow-1" id="btnDisconnect" onclick="onDisconnectClick()" disabled>
-                                            Disconnect
-                                        </button>
-                                    </div>
+                                    <select id="codecmime" class="form-select">
+                                        <option value="0" selected="selected">video/h.264 + audio</option>
+                                        <option value="1">video/h.264</option>
+                                        <option value="2">video/h.265 + audio</option>
+                                        <option value="3">video/h.265</option>
+                                    </select>
                                 </td>
                             </tr>
                         </tbody>
@@ -89,7 +88,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th colspan="2" scope="col">h.264 Stream</th>
+                                    <th colspan="2" scope="col">Connection</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -106,6 +105,19 @@
                                     <td>
                                         <div class="input-group">
                                             <input type="password" class="form-control" id="password" value="instar" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Connection</th>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <button type="button" class="btn btn-primary p-2 flex-grow-1" id="btnConnect" onclick="onConnectClick()">
+                                            Connect
+                                            </button>
+                                            <button type="button" class="btn btn-danger p-2 flex-grow-1" id="btnDisconnect" onclick="onDisconnectClick()" disabled>
+                                                Disconnect
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

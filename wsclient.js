@@ -3,6 +3,7 @@ var ws_protocol = document.getElementById("protocol");
 var ws_hostname = document.getElementById("hostname");
 var ws_port     = document.getElementById("port");
 var ws_endpoint = document.getElementById("endpoint");
+var codec_mime = document.getElementById("codecmime");
 var cam_username = document.getElementById("username");
 var cam_password = document.getElementById("password");
 
@@ -31,12 +32,22 @@ function initMediaSource() {
         setTimeout(function() { video.play(); }, 2000);
     });
     
-    /* NOTE: Chrome will not play the video if we define audio here
+    /* NOTE: Chrome will not play the video if audio is defined here
     * and the stream does not include audio */
-    var mimeCodec = 'video/mp4; codecs="avc1.4D0033, mp4a.40.2"';
-    //var mimeCodec = 'video/mp4; codecs=avc1.42E01E,mp4a.40.2'; baseline
-    //var mimeCodec = 'video/mp4; codecs=avc1.4d002a,mp4a.40.2'; main
-    //var mimeCodec = 'video/mp4; codecs="avc1.64001E, mp4a.40.2"'; high
+    // var mimeCodec = 'video/mp4; codecs="avc1.4D001E, mp4a.40.2"';
+    // var mimeCodec = 'video/mp4; codecs="avc1.4D001E"';
+    // var mimeCodec = 'video/mp4; codecs="hev1.2.4.L120.B0, mp4a.40.2"';
+    // var mimeCodec = 'video/mp4; codecs="hev1.2.4.L120.B0"';
+
+    if (codec_mime.value = 0) {
+            var mimeCodec = 'video/mp4; codecs="avc1.4D001E, mp4a.40.2"';
+        } else if (codec_mime.value = 1) {
+            var mimeCodec = 'video/mp4; codecs="avc1.4D001E"';
+        } else if (codec_mime.value = 2) {
+            var mimeCodec = 'video/mp4; codecs="hev1.2.4.L120.B0, mp4a.40.2"';
+        } else {
+            var mimeCodec = 'video/mp4; codecs="hev1.2.4.L120.B0"';
+    }
 
     if (!window.MediaSource) {
         console.error("No Media Source API available");
@@ -98,7 +109,7 @@ function onConnectClick() {
         initMediaSource();
         document.getElementById("incomingMsgOutput").value = "";
         document.getElementById("btnConnect").disabled    = true;
-        openWSConnection(ws_protocol.value, ws_hostname.value, ws_port.value, ws_endpoint.value);
+        openWSConnection(cam_username.value, cam_password.value, ws_protocol.value, ws_hostname.value, ws_port.value, ws_endpoint.value);
         successToast("Send the 'Start' message to start the video stream.");
         }    
 }
@@ -133,12 +144,12 @@ function errorToast(msg) {
 }
 
 // Open a new WebSocket connection using the given parameters
-function openWSConnection(protocol, hostname, port, endpoint) {
+function openWSConnection(username, password, protocol, hostname, port, endpoint) {
     
     var webSocketURL = null;
     var keepAliveCount = 0;
     
-    webSocketURL = protocol + "://" + hostname + ":" + port + endpoint;
+    webSocketURL = protocol + "://" + username + ":" + password + "@" + hostname + ":" + port + endpoint;
     console.log("openWSConnection::Connecting to: " + webSocketURL);
 
     const offline = `<h4><span class="badge bg-danger">Disconnected</span></h4>`

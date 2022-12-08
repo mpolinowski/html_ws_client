@@ -14,4 +14,7 @@ This is a frontend client for the INSTAR WQHD (`IN-9408 2k+`) camera websocket s
 
 
 
-[see also](https://mpolinowski.github.io/devnotes/2021-09-08--websockets-html-video)
+* [see also full article](https://mpolinowski.github.io/devnotes/2021-09-08--websockets-html-video)
+* [NGINX WebProxy for your camera stream](https://github.com/mpolinowski/docker_ws_video_proxy)
+
+
